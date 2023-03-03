@@ -27,13 +27,18 @@ namespace Database.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    var builder = new ConfigurationBuilder()
+            //                     .SetBasePath(Directory.GetCurrentDirectory())
+            //                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            //    IConfigurationRoot configuration = builder.Build();
+            //    optionsBuilder.UseSqlServer(configuration.GetConnectionString("CollabChatDB"));
+            //}
+            //change later
             if (!optionsBuilder.IsConfigured)
             {
-                var builder = new ConfigurationBuilder()
-                                 .SetBasePath(Directory.GetCurrentDirectory())
-                                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                IConfigurationRoot configuration = builder.Build();
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("CollabChatDB"));
+                optionsBuilder.UseSqlServer("server=localhost;database=CollabChatDatabase;uid=Quang;pwd=12345678");
             }
         }
 

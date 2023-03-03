@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database.Repository
+namespace Database.RepositoryInterface
 {
     public interface IUserRepository
     {
@@ -15,5 +15,6 @@ namespace Database.Repository
         void AddUser(User user);
         void DeleteUser(int user_id);
         void UpdateUser(User user, int userId);
+        User UserLogin(string username, string password);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database.Repository
+namespace Database.RepositoryInterface
 {
     public interface IMessageRepository
     {
