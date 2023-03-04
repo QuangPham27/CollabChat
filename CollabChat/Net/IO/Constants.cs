@@ -11,5 +11,8 @@ namespace CollabChatClient.Net.IO
         public const int loginOpCode = 1;
         public const int loginSuccessOpCode = 2;
         public const int loginFailureOpCode = 3;
+        public const int registerOpCode = 4;
+        public const int registerSuccessOpCode = 5;
+        public const int registerFailureOpCode = 6;
     }
 }

@@ -69,5 +69,12 @@ namespace Database.Management
             }
             return user;
         }
+
+        public User UserRegister(string email)
+        {
+            User user = null;
+            user = databaseContext.Users.FirstOrDefault(o => o.Email == email);
+            return user;
+        }
     }
 }

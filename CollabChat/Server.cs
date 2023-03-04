@@ -25,7 +25,7 @@ namespace CollabChatClient
             if (!_client.Connected)
             {
                 //connect the client to server 
-                _client.Connect("127.0.0.1", 5000);
+                _client.Connect("127.0.0.1", 5555);
             }
                 packetReader = new PacketReader(_client.GetStream());
 
@@ -53,6 +53,43 @@ namespace CollabChatClient
                 }
             
         }
+
+        public void Register(string username, string password, string email, ref string message)
+        {
+            message = "";
+            if (!_client.Connected)
+            {
+                //connect the client to server 
+                _client.Connect("127.0.0.1", 5000);
+            }
+            packetReader = new PacketReader(_client.GetStream());
+
+            //sending login packet to server to check the valid login
+            var registerpacket = new PacketBuilder();
+            registerpacket.WriteOpCode(Constants.registerOpCode);
+            UserModel user = new UserModel
+            {
+                username = username,
+                password = password,
+                email = email
+            };
+            registerpacket.WriteObject(user);
+            _client.Client.Send(registerpacket.GetPacketBytes());
+
+            //wait for server response for login
+            var result = packetReader.ReadByte();
+            if (result == Constants.registerOpCode)
+            {
+                message = "Register Success";
+                //ReadPackets();
+            }
+            else
+            {
+                message = "Register Failed";
+            }
+
+        }
+
         void ReadPackets() 
         {
             Task.Run(() =>

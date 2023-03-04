@@ -15,6 +15,9 @@ namespace CollabChatClient.MVVM.ViewModel
         public string Username { set; get; }
         public string Password { set; get; }
         private string _message;
+
+
+        //
         public string Message { 
             get { return _message; }
             set
@@ -23,12 +26,18 @@ namespace CollabChatClient.MVVM.ViewModel
                 OnPropertyChanged(nameof(Message));
             }
         }
+
+        //
         public RelayCommand loginCommand { set; get; }
+
+        //
         public LoginViewModel()
         {
             loginCommand = new RelayCommand(Login,
                 o => !String.IsNullOrEmpty(Username) && !String.IsNullOrEmpty(Password));
         }
+
+        //
         private void Login(object parameter)
         {               
             string message = "";
