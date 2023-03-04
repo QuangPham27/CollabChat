@@ -37,7 +37,6 @@ namespace CollabChatServer
                     switch (opcode)
                     {
                         case Constants.loginOpCode:
-                            throw new Exception("abc");
                             byte loginResponseOpcode;
                             UserModel login = _packetReader.ReadObject<UserModel>();
                             User userlogin = userManagement.UserLogin(login.username, login.password);
@@ -49,6 +48,7 @@ namespace CollabChatServer
                             break;
 
                         case Constants.registerOpCode:
+                            
                             byte registerResponseOpcode;
                             UserModel register = _packetReader.ReadObject<UserModel>();
                             User reg = new User
@@ -60,12 +60,15 @@ namespace CollabChatServer
 
                             };
                             User userregister = userManagement.UserRegister(register.email);
+
                             if (userregister == null)
                             {
                                 userManagement.AddUser(reg);
                                 registerResponseOpcode = Constants.registerSuccessOpCode;
                             }
                             else registerResponseOpcode = Constants.registerFailureOpCode;
+
+                            
                             var registerResponse = new PacketBuilder();
                             registerResponse.WriteOpCode(registerResponseOpcode);
                             ClientSocket.Client.Send(registerResponse.GetPacketBytes());

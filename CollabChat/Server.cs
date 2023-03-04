@@ -25,7 +25,7 @@ namespace CollabChatClient
             if (!_client.Connected)
             {
                 //connect the client to server 
-                _client.Connect("127.0.0.1", 5555);
+                _client.Connect("127.0.0.1", 5000);
             }
                 packetReader = new PacketReader(_client.GetStream());
 

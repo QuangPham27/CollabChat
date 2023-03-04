@@ -1,5 +1,6 @@
 ﻿using CollabChatClient.MVVM.Core;
 using CollabChatClient.MVVM.View;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,12 +30,14 @@ namespace CollabChatClient.MVVM.ViewModel
 
         //
         public RelayCommand loginCommand { set; get; }
+        public RelayCommand registerCommand { set; get; }
 
         //
         public LoginViewModel()
         {
             loginCommand = new RelayCommand(Login,
                 o => !String.IsNullOrEmpty(Username) && !String.IsNullOrEmpty(Password));
+            registerCommand = new RelayCommand(RegisterNavigate, o => true);
         }
 
         //
@@ -51,6 +54,12 @@ namespace CollabChatClient.MVVM.ViewModel
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RegisterNavigate(object parameter)
+        {
+            RegisterWindow registerwindow = new RegisterWindow();
+            registerwindow.Show();
+        }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

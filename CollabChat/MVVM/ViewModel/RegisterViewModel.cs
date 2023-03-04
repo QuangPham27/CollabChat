@@ -18,14 +18,13 @@ namespace CollabChatClient.MVVM.ViewModel
         private string _message;
 
         public RelayCommand registerCommand { set; get; }
-        public RelayCommand register { set; get;}
 
         //
         public RegisterViewModel()
         {
             registerCommand = new RelayCommand(Register,
                 o => !String.IsNullOrEmpty(Username) && !String.IsNullOrEmpty(Password) && !String.IsNullOrEmpty(Email));
-            register = new RelayCommand(RegisterNavigate, o => true);
+            
         }
 
         private void Register(object parameter)
@@ -41,11 +40,7 @@ namespace CollabChatClient.MVVM.ViewModel
             }
         }
 
-        private void RegisterNavigate(object parameter)
-        {
-            RegisterWindow registerwindow = new RegisterWindow();
-            registerwindow.Show();
-        }
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -39,6 +39,7 @@ namespace Database.Management
             try
             {
                 databaseContext.Users.Add(user);
+                databaseContext.SaveChanges();
             }
             catch (Exception ex)
             {

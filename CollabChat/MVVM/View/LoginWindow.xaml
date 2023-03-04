@@ -39,7 +39,7 @@
             <!-- Login message-->
             <TextBlock Text="{Binding Message, Mode=TwoWay}" Foreground="Red" />
             <!-- Create account button -->
-            <Button Content="Create Account" Width="100" />
+            <Button Content="Create Account" Width="100" Command="{Binding registerCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
