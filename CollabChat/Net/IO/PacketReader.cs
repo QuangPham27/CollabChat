@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CollabChatClient.Net.IO
 {
-    class PacketReader : BinaryReader
+    public class PacketReader : BinaryReader
     {
         private NetworkStream _ns;
         public PacketReader(NetworkStream ns) : base(ns)

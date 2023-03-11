@@ -1,4 +1,5 @@
 ﻿using CollabChatClient.MVVM.Model;
+using CollabChatClient.MVVM.ViewModel;
 using CollabChatClient.Net.IO;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,34 @@ using System.Threading.Tasks;
 
 namespace CollabChatClient
 {
-    class Server
+    public class Server
     {
+        private static Server instance = null;
         public event Action connectedEvent;
         TcpClient _client;
         public PacketReader packetReader;
         public Server()
         {
             _client = new TcpClient();
+            //connect the client to server 
+            //_client.Connect("127.0.0.1", 5000);
+        }
+        public static Server GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Server();
+            }
+            return instance;
         }
 
         public void ConnectToServer(string username, string password, ref string message)
         {
-            message = "";
             if (!_client.Connected)
             {
-                //connect the client to server 
                 _client.Connect("127.0.0.1", 5000);
             }
+            message = "";
                 packetReader = new PacketReader(_client.GetStream());
 
                 //sending login packet to server to check the valid login
@@ -56,12 +67,12 @@ namespace CollabChatClient
 
         public void Register(string username, string password, string email, ref string message)
         {
-            message = "";
             if (!_client.Connected)
             {
-                //connect the client to server 
+                throw new Exception("sucks");
                 _client.Connect("127.0.0.1", 5000);
             }
+            message = "";
             packetReader = new PacketReader(_client.GetStream());
 
             //sending login packet to server to check the valid login

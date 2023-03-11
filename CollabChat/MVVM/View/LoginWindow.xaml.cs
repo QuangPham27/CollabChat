@@ -23,7 +23,6 @@ namespace CollabChatClient.MVVM.View
         public LoginWindow()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
         }
     }
 }

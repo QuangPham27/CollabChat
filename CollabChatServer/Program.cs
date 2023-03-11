@@ -20,6 +20,7 @@ namespace CollabChatServer
             {
                 var client = new Client(_listener.AcceptTcpClient());
                 _users.Add(client);
+                Console.WriteLine(_users.Count);
             }
         }
     }

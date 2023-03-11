@@ -1,5 +1,6 @@
 ﻿using Database.DataAccess;
 using Database.RepositoryInterface;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,10 @@ namespace Database.Management
 
         public IEnumerable<User> GetChatRoomUsers(int chat_room_id)
         {
-            throw new NotImplementedException();
+            List<User> users = null;
+            var chat_room = databaseContext.ChatRooms.Include(c => c.Users).FirstOrDefault(c => c.ChatRoomId == chat_room_id);
+            if (chat_room != null) users = chat_room.Users.ToList();
+            return users;
         }
 
         public User GetUser(int user_id)
