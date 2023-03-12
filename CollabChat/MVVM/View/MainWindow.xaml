@@ -1,0 +1,25 @@
+﻿<Window x:Class="CollabChatClient.MVVM.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollabChatClient.MVVM.View"
+        xmlns:viewmodels="clr-namespace:CollabChatClient.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ContentControl Content="{Binding CurrentViewModel}" >
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                    <local:LoginView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                    <local:HomeView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:RegisterViewModel}">
+                    <local:RegisterView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
+</Window>

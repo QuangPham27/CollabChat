@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CollabChatClient.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CollabChatClient.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for HomeWindow.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class HomeWindow : Window
+    public partial class LoginView : UserControl
     {
-        public HomeWindow()
+        public LoginView()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel();
         }
     }
 }

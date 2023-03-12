@@ -69,7 +69,6 @@ namespace CollabChatClient
         {
             if (!_client.Connected)
             {
-                throw new Exception("sucks");
                 _client.Connect("127.0.0.1", 5000);
             }
             message = "";
@@ -89,7 +88,7 @@ namespace CollabChatClient
 
             //wait for server response for login
             var result = packetReader.ReadByte();
-            if (result == Constants.registerOpCode)
+            if (result == Constants.registerSuccessOpCode)
             {
                 message = "Register Success";
                 //ReadPackets();

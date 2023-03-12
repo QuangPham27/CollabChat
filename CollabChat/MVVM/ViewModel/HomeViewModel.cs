@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CollabChatClient.MVVM.ViewModel
 {
-    class HomeViewModel : BaseViewModel
+    public class HomeViewModel : BaseViewModel
     {
     }
 }

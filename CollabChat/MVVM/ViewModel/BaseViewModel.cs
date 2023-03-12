@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CollabChatClient.MVVM.ViewModel
 {
-    class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected Server _server;

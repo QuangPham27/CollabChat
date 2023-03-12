@@ -6,16 +6,29 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CollabChatClient.MVVM.ViewModel
 
 {
-    class RegisterViewModel: BaseViewModel, INotifyPropertyChanged
+    public class RegisterViewModel: BaseViewModel
     {
         public string Username { set; get; }
         public string Password { set; get; }
         public string Email { set; get; }
         private string _message;
+
+
+        //
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged(nameof(Message));
+            }
+        }
 
         public RelayCommand registerCommand { set; get; }
 
@@ -31,22 +44,15 @@ namespace CollabChatClient.MVVM.ViewModel
         {
             string message = "";
             _server.Register(Username, Password, Email, ref message);
-            _message = message;
             //throw new Exception(_message);
-            if (_message == "Register Success")
+            if (message == "Register Success")
             {
-                LoginWindow loginwindow = new LoginWindow();
-                loginwindow.Show();
+                ((MainViewModel)Application.Current.MainWindow.DataContext).CurrentViewModel = new LoginViewModel();
+            } else
+            {
+                Message = message;
             }
         }
 
-        
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

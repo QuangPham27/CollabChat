@@ -13,5 +13,8 @@ namespace CollabChat
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+        }
     }
 }
