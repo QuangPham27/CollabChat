@@ -41,7 +41,6 @@ namespace CollabChatClient.MVVM.ViewModel
             //throw new Exception(_message);
             if (message == "Login Success")
             {
-                Message = message;
                 ((MainViewModel)Application.Current.MainWindow.DataContext).CurrentViewModel = new HomeViewModel();
             }
             else

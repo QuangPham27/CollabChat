@@ -8,8 +8,11 @@ namespace CollabChatServer.Model
 {
     public class UserModel
     {
-        public string username { get; set; }
-        public string password { get; set; }
-        public string email { set; get; }
+        public int UserId { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Email { set; get; }
+        public string AboutMe { get; set; }
+        public string ProfilePictureUrl { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace CollabChatServer
         public TcpClient ClientSocket { get; set; }
         PacketReader _packetReader;
         UserManagement userManagement = new UserManagement();
-        public Client(TcpClient client) 
+        public Client(TcpClient client)
         {
             ClientSocket = client;
             _packetReader = new PacketReader(ClientSocket.GetStream());
@@ -39,7 +39,7 @@ namespace CollabChatServer
                         case Constants.loginOpCode:
                             byte loginResponseOpcode;
                             UserModel login = _packetReader.ReadObject<UserModel>();
-                            User userlogin = userManagement.UserLogin(login.username, login.password);
+                            User userlogin = userManagement.UserLogin(login.Username, login.Password);
                             if (userlogin == null) loginResponseOpcode = Constants.loginFailureOpCode;
                             else loginResponseOpcode = Constants.loginSuccessOpCode;
                             var loginResponse = new PacketBuilder();
@@ -48,18 +48,18 @@ namespace CollabChatServer
                             break;
 
                         case Constants.registerOpCode:
-                            
+
                             byte registerResponseOpcode;
                             UserModel register = _packetReader.ReadObject<UserModel>();
                             User reg = new User
                             {
-                                Username = register.username,
-                                PasswordHash = register.password,
-                                Email = register.email,
-                                CreatedDate = DateTime.Now 
+                                Username = register.Username,
+                                PasswordHash = register.Password,
+                                Email = register.Email,
+                                CreatedDate = DateTime.Now
 
                             };
-                            User userregister = userManagement.UserRegister(register.email);
+                            User userregister = userManagement.UserRegister(register.Email);
 
                             if (userregister == null)
                             {
@@ -68,17 +68,17 @@ namespace CollabChatServer
                             }
                             else registerResponseOpcode = Constants.registerFailureOpCode;
 
-                            
+
                             var registerResponse = new PacketBuilder();
                             registerResponse.WriteOpCode(registerResponseOpcode);
                             ClientSocket.Client.Send(registerResponse.GetPacketBytes());
                             break;
-                            
+
                         default:
                             break;
                     }
                 }
-                catch (Exception) 
+                catch (Exception)
                 {
                     ClientSocket.Close();
                     break;

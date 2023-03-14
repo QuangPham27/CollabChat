@@ -38,31 +38,31 @@ namespace CollabChatClient
                 _client.Connect("127.0.0.1", 5000);
             }
             message = "";
-                packetReader = new PacketReader(_client.GetStream());
+            packetReader = new PacketReader(_client.GetStream());
 
-                //sending login packet to server to check the valid login
-                var loginPacket = new PacketBuilder();
-                loginPacket.WriteOpCode(Constants.loginOpCode);
-                UserModel user = new UserModel
-                {
-                    username = username,
-                    password = password
-                };
-                loginPacket.WriteObject(user);
-                _client.Client.Send(loginPacket.GetPacketBytes());
+            //sending login packet to server to check the valid login
+            var loginPacket = new PacketBuilder();
+            loginPacket.WriteOpCode(Constants.loginOpCode);
+            UserModel user = new UserModel
+            {
+                Username = username,
+                Password = password
+            };
+            loginPacket.WriteObject(user);
+            _client.Client.Send(loginPacket.GetPacketBytes());
 
-                //wait for server response for login
-                var result = packetReader.ReadByte();
-                if (result == Constants.loginSuccessOpCode)
-                {
-                    message = "Login Success";
-                    //ReadPackets();
-                }
-                else
-                {
-                    message = "Login Failed";
-                }
-            
+            //wait for server response for login
+            var result = packetReader.ReadByte();
+            if (result == Constants.loginSuccessOpCode)
+            {
+                message = "Login Success";
+                //ReadPackets();
+            }
+            else
+            {
+                message = "Login Failed";
+            }
+
         }
 
         public void Register(string username, string password, string email, ref string message)
@@ -79,9 +79,9 @@ namespace CollabChatClient
             registerpacket.WriteOpCode(Constants.registerOpCode);
             UserModel user = new UserModel
             {
-                username = username,
-                password = password,
-                email = email
+                Username = username,
+                Password = password,
+                Email = email
             };
             registerpacket.WriteObject(user);
             _client.Client.Send(registerpacket.GetPacketBytes());
@@ -91,7 +91,6 @@ namespace CollabChatClient
             if (result == Constants.registerSuccessOpCode)
             {
                 message = "Register Success";
-                //ReadPackets();
             }
             else
             {
@@ -100,14 +99,14 @@ namespace CollabChatClient
 
         }
 
-        void ReadPackets() 
+        void ReadPackets()
         {
             Task.Run(() =>
             {
-                while(true)
+                while (true)
                 {
                     var opcode = packetReader.ReadByte();
-                    switch(opcode)
+                    switch (opcode)
                     {
                         default:
                             break;
