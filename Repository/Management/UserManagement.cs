@@ -35,7 +35,8 @@ namespace Database.Management
 
         public User GetUser(int user_id)
         {
-            throw new NotImplementedException();
+            User user = databaseContext.Users.FirstOrDefault(u => u.UserId == user_id);
+            return user;
         }
 
         public void AddUser(User user)
@@ -56,9 +57,18 @@ namespace Database.Management
             throw new NotImplementedException();
         }
 
-        public void UpdateUser(User user, int userId)
+        public void UpdateUser(User updatedUser, int userId)
         {
-            throw new NotImplementedException();
+            var user = databaseContext.Users.FirstOrDefault(o => o.UserId == userId);
+            if (user != null)
+            {
+                user.Username = updatedUser.Username;
+                user.PasswordHash = updatedUser.PasswordHash;
+                user.ProfilePictureUrl = updatedUser.ProfilePictureUrl;
+                user.Email = updatedUser.Email;
+                user.AboutMe = updatedUser.AboutMe;
+            }
+            databaseContext.SaveChanges();
         }
 
         public User UserLogin(string username, string password)
@@ -80,6 +90,28 @@ namespace Database.Management
             User user = null;
             user = databaseContext.Users.FirstOrDefault(o => o.Email == email);
             return user;
+        }
+
+
+        public IEnumerable<User> GetBlockedUsers(int user_id)
+        {
+            List<User> blockedUsers = null;
+            var temp = databaseContext.BlockedUsers.Join(
+                    databaseContext.Users,
+                    bu => bu.BlockedUserId,
+                    u => u.UserId,
+                    (bu, u) => new User
+                    {
+                        UserId = u.UserId,
+                        Username = u.Username,
+                        Email = u.Email,
+                        PasswordHash = u.PasswordHash,
+                        AboutMe = u.AboutMe,
+                        ProfilePictureUrl = u.ProfilePictureUrl,
+                        CreatedDate = u.CreatedDate
+                    });
+            blockedUsers = temp.ToList();
+            return blockedUsers;
         }
     }
 }

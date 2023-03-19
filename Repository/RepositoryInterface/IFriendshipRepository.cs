@@ -10,8 +10,8 @@ namespace Database.RepositoryInterface
     public interface IFriendshipRepository
     {
         void AddFriendship(Friendship friendship);
-        Friendship GetFriendship(int user_id);
-        IEnumerable<Friendship> GetAllFriends(int user_id);
+        List<Friendship> GetPendingFriendships(int user_id);
+        IEnumerable<User> GetAllFriends(int user_id);
         void RemoveFriendship(int user_id1, int user_id2);
     }
 }

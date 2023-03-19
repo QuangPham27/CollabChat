@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace Database.RepositoryInterface
     {
         void addBlocked(int user_id, int blocked_user_id);
         void removeBlocked(int user_id, int blocked_user_id);
+        List<BlockedUser> blockedUserList(int user_id);
     }
 }

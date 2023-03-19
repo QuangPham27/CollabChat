@@ -9,8 +9,6 @@ namespace Database.RepositoryInterface
 {
     public interface IMessageRepository
     {
-        IEnumerable<Message> GetInboxMessages(int inbox_id);
-        IEnumerable<Message> GetChatRoomMessages(int chat_room_id);
         Message GetMessage(string content);
         void AddInboxMessage(Message message, int inbox_id);
         void AddChatRoomMessage(Message message, int chat_room_id);

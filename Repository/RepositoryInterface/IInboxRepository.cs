@@ -11,6 +11,6 @@ namespace Database.RepositoryInterface
     {
         void AddInbox(int user_id1, int user_id2);
         IEnumerable<Inbox> GetInboxes(int user_id);
-        void GetInbox(int user_id1, int user_id2);
+        Inbox GetInbox(int user_id1, int user_id2);
     }
 }

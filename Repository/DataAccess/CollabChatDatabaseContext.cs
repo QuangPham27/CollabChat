@@ -65,9 +65,7 @@ namespace Database.DataAccess
             {
                 entity.ToTable("ChatRoom");
 
-                entity.Property(e => e.ChatRoomId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("chat_room_id");
+                entity.Property(e => e.ChatRoomId).HasColumnName("chat_room_id");
 
                 entity.Property(e => e.ChatRoomName)
                     .IsRequired()
@@ -130,9 +128,7 @@ namespace Database.DataAccess
             {
                 entity.ToTable("File");
 
-                entity.Property(e => e.FileId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("file_id");
+                entity.Property(e => e.FileId).HasColumnName("file_id");
 
                 entity.Property(e => e.MessageId).HasColumnName("message_id");
 
@@ -152,9 +148,7 @@ namespace Database.DataAccess
             {
                 entity.ToTable("Friendship");
 
-                entity.Property(e => e.FriendshipId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("friendship_id");
+                entity.Property(e => e.FriendshipId).HasColumnName("friendship_id");
 
                 entity.Property(e => e.AcceptedDate)
                     .HasColumnType("date")
@@ -187,9 +181,7 @@ namespace Database.DataAccess
             {
                 entity.ToTable("Inbox");
 
-                entity.Property(e => e.InboxId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("inbox_id");
+                entity.Property(e => e.InboxId).HasColumnName("inbox_id");
 
                 entity.Property(e => e.User1Id).HasColumnName("user1_id");
 
@@ -229,9 +221,7 @@ namespace Database.DataAccess
             {
                 entity.ToTable("Message");
 
-                entity.Property(e => e.MessageId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("message_id");
+                entity.Property(e => e.MessageId).HasColumnName("message_id");
 
                 entity.Property(e => e.Content)
                     .IsRequired()

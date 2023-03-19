@@ -14,7 +14,8 @@ namespace Database.RepositoryInterface
         User GetUser(int user_id);
         void AddUser(User user);
         void DeleteUser(int user_id);
-        void UpdateUser(User user, int userId);
+        void UpdateUser(User updatedUser, int userId);
         User UserLogin(string username, string password);
+        IEnumerable<User> GetBlockedUsers(int user_id);
     }
 }
